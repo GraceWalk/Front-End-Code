@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dan Ru Dan Chu</title>
+</head>
+
+<body>
+	<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+	<button id="fade-btn">淡出</button>
+</body>
+
+<script>
+	var dan = document.getElementById('fade-obj');
+	var btn = document.getElementById('fade-btn');
+	var opachu, oparu;
+	btn.addEventListener('click', dandan);
+
+	function dandan() {
+		if (btn.textContent === '淡出') {
+			opachu = 1;
+			btn.disabled = true;	
+			danchu();	
+			btn.textContent = '淡入';
+		} else {
+			oparu = 0;
+			btn.disabled = true;
+			danru();
+			btn.textContent = '淡出';
+		}
+	}
+
+	function danchu() {
+		opachu -= 0.01;
+		opachu = opachu.toFixed(2);
+		dan.style.opacity = opachu;
+		t = setTimeout('danchu()', 10);
+		if (opachu <= 0) {
+			clearTimeout(t);
+			btn.disabled = false;
+		}
+}
+	function danru() {
+		oparu += 0.01;
+		dan.style.opacity = oparu;
+		t = setTimeout('danru()', 10);
+		if (oparu >= 1) {
+			clearTimeout(t);
+			btn.disabled = false;
+		}
+}
+
+</script>
+</html>

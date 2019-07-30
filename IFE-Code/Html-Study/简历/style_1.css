@@ -1,0 +1,9 @@
+html {
+	font-size: 20px;
+}
+p {
+	font-weight: 500;
+}
+.detail p span {
+	font-weight: bold;
+}

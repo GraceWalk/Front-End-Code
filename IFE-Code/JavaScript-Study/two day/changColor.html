@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset = "utf-8">
+	<title>改变颜色</title>
+</head>
+
+<body>
+	<button>Click Here</button>
+</body>
+
+<script>
+	var btn = document.querySelector('button');
+
+	function random(number) {
+		return Math.floor(Math.random() * (number + 1));
+	}
+
+	btn.onclick = function() {
+		var rgbCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+		document.body.style.backgroundColor = rgbCol;
+	}
+</script>
+</html>

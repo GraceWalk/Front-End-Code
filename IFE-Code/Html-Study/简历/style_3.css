@@ -1,0 +1,46 @@
+html {
+	font-size: 20px;
+}
+p {
+	font-weight: 500;
+	margin-left: 15px;
+}
+* {
+	box-sizing: border-box;
+}
+h1 {
+	color: white;
+	font-size: 1.0rem;
+	display: block;
+	padding: 20px;
+	margin: 0px;
+	background-color: #708090;
+	float: top;
+}
+* {
+    box-sizing: border-box;
+}
+div, h2 {
+    display: block;
+}
+h2 {
+	width: 10%;
+    line-height: 150px;
+    height: 150px;
+    text-align: center;
+    background-color: gainsboro;
+    float: left;
+    font-size: 1.0rem;
+    border-bottom: 2px solid #FAEBD7;
+    margin: 0px;
+}
+.detail {
+	width: 90%;
+    height: 150px;
+    float: left;
+    font-size: 0.8rem;
+    border-bottom: 2px solid #FAEBD7;
+}
+.detail p span {
+	font-weight: bold;
+}

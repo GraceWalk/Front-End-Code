@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+var dec = document.getElementById('dec-number');
+var trans = document.getElementById('trans-btn');
+var result = document.getElementById('result');
+
+function qL() {
+	dec.value = null;
+	dec.focus();
+}
+/*
+function dec2bin() {
+	var decNumber = dec.value;
+    if (dec.Number <= 0) {
+    	result.textContent = '请输入非负整数!';
+    	qL();
+    } else {
+    	var to2, toto2 = 1, cout = 0;
+    	do {
+    		to2 = parseInt(decNumber % 2);
+    		cout = Number(cout + to2 * toto2);
+    		result.textContent = cout;
+    		decNumber = parseInt(decNumber / 2);
+    		toto2 *= 10;
+    	}while(decNumber);
+    }
+}*/
+
+function dec2bin() {
+	result.textContent = '运算结果';
+	var decNumber = dec.value;
+    if (dec.Number <= 0) {
+    	result.textContent = '请输入非负整数!';
+    	qL();
+    } else {
+    	var to2, cout = [];
+    	do {
+    		to2 = parseInt(decNumber % 2);
+    		cout.unshift(to2);
+    		console.log(cout[0]);
+    		decNumber = parseInt(decNumber / 2);
+    	}while(decNumber);
+    	cout.forEach(function(cout) {
+    		result.textContent += cout;
+    	});
+    }
+}
+
+trans.addEventListener('click', dec2bin);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Random color example — event handler property</title>
+    <style>
+      div {
+        background-color: red;
+        width: 25%;
+        height: 100px;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+
+    <script>
+      for (var j = 0; j < 16; j++) {
+        var myDiv  = document.createElement('div');
+        document.body.appendChild(myDiv);
+      }
+      var divs = document.querySelectorAll('div');
+
+      function random(number) {
+        return Math.floor(Math.random()*number);
+      }
+
+      function bgChange(e) {
+        var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        e.target.style.backgroundColor = rndCol;
+      }
+
+      for (var i = 0; i < divs.length; i++) {
+        divs[i].addEventListener('mouseout', bgChange);
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "uft-8">
+	<title>test</title>
+</head>
+
+<body>
+	<input id="name" type="text">    
+	<button id="submit-btn">Submit</button>
+</body>
+
+<script>
+	var nam = document.getElementById('name');
+	var btn = document.getElementById('submit-btn');
+
+	btn.onclick = function() {
+		console.log(nam.value);
+	}
+</script>
+</html>

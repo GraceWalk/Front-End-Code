@@ -1,0 +1,12 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.wrapper .left {
+    flex: 0 0 auto;
+}
+
+.wrapper .right {
+    flex: 1 1 auto;
+}
