@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据报表</title>
+	<script src="ife31data.js" defer></script>
+	<script src="main.js" defer></script>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			border: 1px solid black;
+			width: 70px;
+		}
+	</style>
+</head>
+<body>
+	<div id="region-radio-wrapper">
+		<input type="checkbox" id="华东" checkbox-type="sub" checked>
+		<label for="华东">华东</label>
+		<input type="checkbox" id="华南" checkbox-type="sub">
+		<label for="华东">华南</label>
+		<input type="checkbox" id="华北" checkbox-type="sub">
+		<label for="华东">华北</label>
+		<input type="checkbox" id="全选" checkbox-type="all">
+		<label for="全选">全选</label>
+	</div>
+	<div id="product-radio-wrapper">
+		<input type="checkbox" id="手机" checkbox-type="sub" checked>
+		<label for="手机">手机</label>
+		<input type="checkbox" id="笔记本" checkbox-type="sub">
+		<label for="笔记本">笔记本</label>
+		<input type="checkbox" id="智能音箱" checkbox-type="sub">
+		<label for="智能音箱">智能音箱</label>
+		<input type="checkbox" id="全选" checkbox-type="all">
+		<label for="全选">全选</label>
+	</div>
+	<div id="table-wrapper"></div>
+
+	<object data="demo1.svg" type="image/svg+xml"></object>
+</body>
+</html>
