@@ -224,7 +224,7 @@ body {
     cursor: pointer;
     width: 60px;
     height: 60px;
-    background-color: rgba(255, 193, 7);
+    background-color: rgba(255, 193, 7, 1);
     border-radius: 50%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
@@ -244,12 +244,12 @@ body {
     height: 50px;
     background-color: #757575;
     border-radius: 100px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     line-height: 50px;
     text-align: center;
     font-size: 14px;
     color: #fff;
-    transition: .2s ease-out;
+    transition: 0.2s ease-out;
     cursor: pointer;
 }
 
