@@ -3,6 +3,24 @@ body {
     background-color: rgb(245, 245, 245);
 }
 
+.bg {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/bg5.jpg') repeat;
+    background-size: cover;
+}
+.bg:after {
+    content: '';
+    display: block;
+    background-color: rgba(170, 169, 169, 0.3);
+    width: 100%;
+    height: 100%;
+}
+
 /*----------------------header区域样式----------------------*/
 
 /*头部栏样式*/
@@ -13,7 +31,8 @@ body {
     left: 0;
     width: 100%;
     height: 60px;
-    background-color: rgba(33, 150, 243, 1);
+    background-color: rgb(148, 175, 197);
+    opacity: 0.9;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -27,7 +46,7 @@ body {
 }
 
 /*左侧栏菜单按钮*/
-.app-menu {
+.app-menu{
     position: absolute;
     top: 14px;
     left: 5%;
@@ -35,9 +54,22 @@ body {
     padding: 3px 0;
     border-radius: 3px;
 }
-
+.app-back {
+    display: none;
+    position: absolute;
+    top: 15px;
+    left: 5%;
+    width: 40px;
+    height: 36px;
+}
+.app-back svg {
+    padding-top: 5px;
+    padding-left: 7px;
+    width: 60%;
+}
 /*左侧栏鼠标效果*/
-.app-menu:hover {
+.app-menu:hover, .app-back:hover {
+    border-radius: 2px;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -50,7 +82,14 @@ body {
     background-color: #fff;
 }
 
-
+.headerUp{
+    top: -65px;
+    transition: 0.3s;
+}
+.headerDown{
+    top: 0;
+    transition: 0.3s;
+}
 /*----------------------main区域样式----------------------*/
 
 
@@ -74,22 +113,26 @@ body {
 }
 
 /*具体事项盒子*/
-.task-item, .completed-item {
+.task-item {
     position: relative;
     width: 90%;
     padding: 20px 0;
     border-radius: 3px;
     margin: 0 auto;
     margin-bottom: 15px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 /*盒子内容*/
-.task-item .task-title, .completed-item .completed-title {
+.task-item .task-title {
     margin-left: 30px;
 }
+/*隐藏任务标号的显示*/
+.task-item i {
+    display: none;
+}
 /*删除按钮样式*/
-.task-item .clear, .completed-item .clear {
+.task-item .clear {
     position: absolute;
     cursor: pointer;
     right: 58px;
@@ -98,7 +141,7 @@ body {
     top: 20px;
 }
 /*完成事项删除按钮位置*/
-.completed-item .clear {
+.completed-list .clear {
     right: 20px;
 }
 /*完成按钮样式*/
@@ -111,7 +154,8 @@ body {
     top: 20px;
 }
 
-/*左侧栏*/
+/*----------------------左侧栏----------------------*/
+/*左侧栏弹出背景*/
 .cover {
     display: none;
     position: fixed;
@@ -122,6 +166,7 @@ body {
     height: 100%;
     background-color: rgba(0,0,0,0.3);
 }
+/*左侧大盒子*/
 .menu-box {
     position: fixed;
     z-index: 5;
@@ -132,19 +177,35 @@ body {
     background-color: #fff;
     box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.2);  
 }
-
+/*盒子内容*/
 .menu-content {
     margin-top: 80px;
     list-style: none;
     padding-left: 0;
 }
-
+/*具体内容项*/
 .menu-item {
-    margin-left: 30px;
+    position: relative;
+    cursor:pointer;
     line-height: 60px;
+    width: 100%;
+    height: 60px;
+    transition: .3s;
 }
+.menu-item:hover {
+    background-color: rgba(144, 144, 144, 0.1);
+}
+/*内容项图标*/
+.menu-item svg {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+/*内容项文字*/
 .menu-item span {
-    margin-left: 20px;
+    position: absolute;
+    top: 0px;
+    left: 65px;
     font-size: 16px;
     letter-spacing: 1px;
     color: rgb(114, 114, 114);
@@ -192,6 +253,15 @@ body {
     cursor: pointer;
 }
 
+.btnDown{
+    bottom: -60px;
+    transition: 0.3s;
+}
+.btnUp{
+    bottom: 3%;
+    transition: 0.3s;
+}
+
 /*添加新任务界面*/
 .add-task {
     display: none;
@@ -219,8 +289,124 @@ body {
     font-size: 24px;
     padding-bottom: 5px;
     border: 0px;
-    border-bottom: 2px solid rgb(110, 110, 110);
+    border-bottom: 2px solid #BDBDBD;
 }
 .task-content input:focus {
     outline: none;
+}
+
+/*----------------------换肤界面----------------------*/
+/*皮肤、关于界面盒子*/
+.menu-subCard {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    top: 200px;
+    left: 5%;
+    width: 90%;
+    height: 220px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    animation: flyup 0.4s;
+}
+.setColorPanel {
+    margin: 0 auto;
+    padding: 20px 0;
+    list-style: none;
+}
+.colorItem {
+    position: relative;
+    height: 60px;
+    cursor: pointer;
+}
+.colorItem:hover {
+    background-color: rgba(144, 144, 144, 0.1);
+}
+/*颜色介绍文字样式*/
+.colorItem span{
+    position: absolute;
+    top: 20px;
+    left: 23%;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+/*颜色药丸盒子*/
+.colorBlock {
+    position: absolute;
+    top: 20px;
+    right: 23%;
+    width: 70px;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+/*药丸左右侧部分样式*/
+.colorBlock div{
+    float: left;
+    width: 35px;
+    height: 20px;
+}
+/*具体颜色*/
+.cgreen {
+    background-color: #25b99a;
+}
+.cgwhite {
+    background-color: #e8f5e9;
+}
+.cred {
+    background-color: #f44336;
+}
+.crwhite {
+    background-color: #ffe8ee;
+}
+.cblue {
+    background-color: #2196f3;
+}
+.cbwhite {
+    background-color: #e3f2fd;
+}
+
+.shake {
+    animation: shake 0.3s;
+    -webkit-animation: shake 0.3s;
+}
+@keyframes shake {
+	30%{
+		transform: rotate(10deg);
+	}
+	50%{
+		transform: rotate(0deg);
+	}
+	80%{
+		transform: rotate(-10deg);
+	}
+	100%{
+		transform: rotate(0deg);
+	}
+}
+@-webkit-keyframes shake {
+	30%{
+		transform: rotate(10deg);
+	}
+	50%{
+		transform: rotate(0deg);
+	}
+	80%{
+		transform: rotate(-10deg);
+	}
+	100%{
+		transform: rotate(0deg);
+	}
+}
+.about {
+    background-color: rgba(255, 255, 255, 0);
+}
+.about p {
+    margin: 0 auto;
+    padding: 50px 0;
+    width: 300px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
 }
