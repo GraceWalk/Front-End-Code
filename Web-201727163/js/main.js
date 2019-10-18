@@ -29,10 +29,10 @@ nameSubmit.onclick = function() {
 
 //单选框
 var selectedFood;
-var food = document.getElementById('food');
+var foodSelect = document.getElementById('foodselect');
 var list = document.getElementsByClassName('myfood');
-food.onchange = function() {
-    selectedFood = food.value;
+foodSelect.onchange = function() {
+    selectedFood = foodSelect.value;
     for (var i = 0; i < list.length; i++) {
         list[i].style.display = 'none';
     }
@@ -42,6 +42,7 @@ food.onchange = function() {
 //左侧导航
 var sidebar = document.getElementById('sidebar');
 var sidebarChild = sidebar.children;
+
 //实时定位内容位置
 window.onscroll = function() {
     var windowTop = document.documentElement.scrollTop + 1;
@@ -63,6 +64,7 @@ window.onscroll = function() {
         sidebarChild[0].style.backgroundColor = 'rgba(187, 187, 187, 0.5)';
     }
 }
+
 //平滑滚动到内容位置
 sidebarChild[0].onclick = function() {
     window.scrollTo({
