@@ -8,6 +8,8 @@ if(!port){
   process.exit(1)
 }
 
+let sessions = {}
+
 var server = http.createServer(function(request, response){
   var parsedUrl = url.parse(request.url, true)
   var pathWithQuery = request.url
@@ -17,21 +19,30 @@ var server = http.createServer(function(request, response){
   var query = parsedUrl.query
   var method = request.method
 
+
+
   /******** 从这里开始看，上面不要看 ************/
 
   if(path == '/') {
   let string = fs.readFileSync('./index.html', 'utf8')
   let users = fs.readFileSync('./db/users.json', 'utf8')
     users = JSON.parse(users)
-  let cookies = request.headers.cookie.split('; ')
+  let cookies = ''
+  if (request.headers.cookie) {
+    cookies = request.headers.cookie.split('; ')
+  }
   let hash = {}
   for (let i = 0; i < cookies.length; i++) {
     let parts = cookies[i].split('=');
     let name = parts[0];
     let value = parts[1];
     hash[name] = value;
-  } 
-  let email = hash.sign_in_email;
+  }
+  let mySession = sessions[hash.sessionId]
+  let email
+  if (mySession) {
+    email = mySession.sign_in_email
+  }
 
   let foundUser
   for (let i = 0; i < users.length; i++) {
@@ -60,7 +71,7 @@ var server = http.createServer(function(request, response){
     response.end()
     
     /********* 从这里开始 **********/
-  } else if (path === '/sign_up' && method === 'POST') {
+  } else if (path === '/sign_up' && method === 'POST') {                     //注册
     readBody(request).then((body)=>{
       //将body字符串分割为hash
       let hash = {}
@@ -120,7 +131,7 @@ var server = http.createServer(function(request, response){
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
     response.write(string)
     response.end()
-  } else if (path === '/sign_in' && method === 'POST') {
+  } else if (path === '/sign_in' && method === 'POST') {                //登录
     readBody(request).then((body)=>{
       //将body字符串分割为hash
       let hash = {}
@@ -147,9 +158,11 @@ var server = http.createServer(function(request, response){
           break;
         }
       }
-
+      let sessionId = Math.random() * 100000
+      sessions[sessionId] = {sign_in_email: email, password: password}
+      console.log(sessions)
       if (found) {
-        response.setHeader('Set-Cookie', `sign_in_email=${email}`)
+        response.setHeader('Set-Cookie', `sessionId=${sessionId}`)
         response.statusCode = 200
       } else {
         response.statusCode = 401
@@ -163,6 +176,7 @@ var server = http.createServer(function(request, response){
   /******** 代码结束，下面不要看 ************/
 })
 
+
 function readBody(request) {
   return new Promise((resolve, reject)=>{
     let body = []; //请求体
@@ -174,7 +188,6 @@ function readBody(request) {
     });
   })
 }
-
 
 
 server.listen(port)
