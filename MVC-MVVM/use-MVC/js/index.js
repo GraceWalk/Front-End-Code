@@ -1,4 +1,5 @@
 fakeData();
+
 let model = {
   data: {
     name: '',
@@ -17,20 +18,19 @@ let model = {
  }
 }
 
-
 let view = {
   el: '#app',
   template: `
     <div>
-书名：《__name__》
-数量：<span id="number">__number__</span>
+      书名：《__name__》
+      数量：<span id="number">__number__</span>
+          </div>
+      <div>
+      <button id="addOne">add</button>
+      <button id="minusOne">minus</button>
+      <button id="reset">reset</button>
     </div>
-<div>
-<button id="addOne">add</button>
-<button id="minusOne">minus</button>
-<button id="reset">reset</button>
-</div>
-`,
+  `,
   render (data) {
     let newHtml = this.template.replace('__name__', data.name)
       .replace('__number__', data.number)

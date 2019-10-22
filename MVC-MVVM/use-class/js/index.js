@@ -16,7 +16,7 @@ Model.prototype.update = function(data){
         this.data = response.data
         return response
     })
-}ccc
+}
 //类
 function View({el, template}){
   this.el = el
@@ -45,15 +45,15 @@ let view = new View({
   el: '#app',
   template: `
     <div>
-书名：《__name__》
-数量：<span id="number">__number__</span>
+      书名：《__name__》
+      数量：<span id="number">__number__</span>
+          </div>
+      <div>
+      <button id="addOne">add</button>
+      <button id="minusOne">minus</button>
+      <button id="reset">reset</button>
     </div>
-<div>
-<button id="addOne">add</button>
-<button id="minusOne">minus</button>
-<button id="reset">reset</button>
-</div>
-`
+  `
 })
 
 
@@ -74,8 +74,9 @@ let controller = {
   addOne(){
     let oldNumber = $('#number').text();
     let newNumber = oldNumber - 0 + 1;
-    axios.put('/books/1', {number: newNumber}).then(()=>{
+    return axios.put('/books/1', {number: newNumber}).then(()=>{
       this.view.render(this.model.data)
+      return response
     })
   },
   minusOne(){
